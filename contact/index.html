@@ -139,9 +139,9 @@ a[href*="webflow.com"] {
             <div class="contactus-contents">
                 <div class="contact-form-col">
                     <div class="contact-form-wrapper w-form">
-                        <form id="email-form" name="email-form" data-name="Email Form" method="get" class="contact-form"
-                            data-wf-page-id="67979af07d95b7ff01288df5"
-                            data-wf-element-id="a6ad5bf7-98ee-3f17-8574-f772f67802c2" aria-label="Email Form">
+<form action="https://formspree.io/f/xqedyzgr" method="POST" id="email-form" class="contact-form">
+
+                            
                             <div class="contact-form-row">
                                 <div class="form-input-wrapper"><label for="Name">Full Name</label><input
                                         class="input w-input" maxlength="256" name="Name" data-name="Name"
@@ -574,6 +574,33 @@ We follow the Montessori method, focusing on hands-on learning, independence, cr
     </template>
 
   </veepn-lock-screen><span id="PING_CONTENT_DLS_POPUP" style="display: none;"></span>
+
+  <script>
+  const form = document.getElementById("email-form");
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.reset();
+      document.querySelector(".w-form-done").style.display = "block";
+      document.querySelector(".w-form-fail").style.display = "none";
+    } else {
+      document.querySelector(".w-form-fail").style.display = "block";
+      document.querySelector(".w-form-done").style.display = "none";
+    }
+  });
+</script>
 
 </body>
 
